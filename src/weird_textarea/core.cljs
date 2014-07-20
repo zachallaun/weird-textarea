@@ -2,7 +2,9 @@
   (:require [om.core :as om]
             [om.dom :as dom]))
 
-(defn textarea-example-inner [{:keys [value]} owner {:keys [on-change]}]
+(enable-console-print!)
+
+(defn textarea [{:keys [value]} owner {:keys [on-change]}]
   (reify
     om/IRender
     (render [_]
@@ -23,7 +25,7 @@
                          ;; :onKeyUp #(om/refresh! owner)
                          }))))
 
-(defn textarea-example [_ owner]
+(defn textarea-builder [_ owner]
   (reify
     om/IInitState
     (init-state [_]
@@ -31,7 +33,7 @@
 
     om/IRenderState
     (render-state [_ {:keys [value]}]
-      (om/build textarea-example-inner
+      (om/build textarea
                 {:value value}
                 {:opts {:on-change #(om/set-state! owner :value %)}}))))
 
@@ -40,7 +42,7 @@
   (reify
     om/IRender
     (render [this]
-      (om/build textarea-example nil))))
+      (om/build textarea-builder nil))))
 
 ;; the bug is only present if the component holding local state is NOT
 ;; the root, which is why app exists.
