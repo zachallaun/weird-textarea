@@ -39,7 +39,6 @@
     (render [this]
       (om/build textarea-example nil))))
 
-(om/root
-  app
-  nil
-  {:target (. js/document (getElementById "app"))})
+;; the bug is only present if the component holding local state is NOT
+;; the root, which is why app exists.
+(om/root app nil {:target (. js/document (getElementById "app"))})
