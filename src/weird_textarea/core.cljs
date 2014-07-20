@@ -15,12 +15,12 @@
                          ;; if the following line is present, the
                          ;; cursor will jump to the end on every
                          ;; keypress.
-                         :onKeyDown #(om/set-state! owner :foo :bar)
+                         :onKeyDown #(om/refresh! owner)
 
                          ;; if the following line is present, the
                          ;; cursor will jump to the end if you type
                          ;; very quickly.
-                         ;; :onKeyUp #(om/set-state! owner :foo :bar)
+                         ;; :onKeyUp #(om/refresh! owner)
                          }))))
 
 (defn textarea-example [_ owner]
