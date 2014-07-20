@@ -9,6 +9,9 @@
       (dom/textarea #js {:value value
                          :onChange #(on-change (.. % -target -value))
 
+                         ;; the following lines must set-state! in
+                         ;; their callback for the cursor to jump.
+
                          ;; if the following line is present, the
                          ;; cursor will jump to the end on every
                          ;; keypress.
